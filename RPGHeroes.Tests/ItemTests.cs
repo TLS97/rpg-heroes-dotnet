@@ -1,10 +1,13 @@
 ﻿using RPGHeroes.Enums;
+using RPGHeroes.Heroes;
 using RPGHeroes.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RPGHeroes.Enums.ArmorsEnum;
+using static RPGHeroes.Enums.SlotsEnum;
 using static RPGHeroes.Enums.WeaponsEnum;
 
 namespace RPGHeroes.Tests
@@ -53,12 +56,12 @@ namespace RPGHeroes.Tests
             string name = "Axe";
             int requiredLevel = 1;
             int damage = 1;
-            Enum slot = SlotsEnum.Slots.Weapon;
-            Enum expected = slot;
+            Slots slot = SlotsEnum.Slots.Weapon;
+            Slots expected = slot;
 
             // Act
             Weapon axe = new(name, requiredLevel, damage);
-            Enum actual = axe.Slot;
+            Slots actual = axe.Slot;
 
             // Assert
             Assert.Equal(expected, actual);
@@ -100,5 +103,97 @@ namespace RPGHeroes.Tests
         }
         #endregion
 
+        #region Armor Creation
+        [Fact]
+        public void Constructor_InitializeArmor_ShouldInitializeWithCorrectName()
+        {
+            // Arrange
+            string name = "Cloth";
+            int requiredLevel = 1;
+            Slots slot = SlotsEnum.Slots.Body;
+            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            string expected = name;
+
+            // Act
+            Armor cloth = new(name, requiredLevel, slot, armorType);
+            string actual = cloth.Name;
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Constructor_InitializeArmor_ShouldInitializeWithCorrectRequiredLevel()
+        {
+            // Arrange
+            string name = "Cloth";
+            int requiredLevel = 1;
+            Slots slot = SlotsEnum.Slots.Body;
+            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            int expected = requiredLevel;
+
+            // Act
+            Armor cloth = new(name, requiredLevel, slot, armorType);
+            int actual = cloth.RequiredLevel;
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Constructor_InitializeArmor_ShouldInitializeWithCorrectSlot()
+        {
+            // Arrange
+            string name = "Cloth";
+            int requiredLevel = 1;
+            Slots slot = SlotsEnum.Slots.Body;
+            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            Slots expected = slot;
+
+            // Act
+            Armor cloth = new(name, requiredLevel, slot, armorType);
+            Slots actual = cloth.Slot;
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Constructor_InitializeArmor_ShouldInitializeWithCorrectArmorType()
+        {
+            // Arrange            
+            string name = "Cloth";
+            int requiredLevel = 1;
+            Slots slot = SlotsEnum.Slots.Body;
+            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            ArmorTypes expected = armorType;
+
+            // Act
+            Armor cloth = new(name, requiredLevel, slot, armorType);
+            ArmorTypes actual = cloth.ArmorType;
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Constructor_InitializeArmor_ShouldInitializeWithCorrectArmorAttributes()
+        {
+            // Arrange
+            string name = "Cloth";
+            int requiredLevel = 1;
+            Slots slot = SlotsEnum.Slots.Body;
+            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            HeroAttributes armorAttributes = new(0, 0, 0);
+            HeroAttributes expected = armorAttributes;
+
+            // Act
+            Armor cloth = new(name, requiredLevel, slot, armorType);
+            HeroAttributes actual = cloth.ArmorAttributes;
+
+            // Assert
+            Assert.Equivalent(expected, actual, true);
+        }
+        #endregion
     }
 }
