@@ -11,7 +11,13 @@ namespace RPGHeroes.Heroes
         public Mage(string name) : base(name) 
         {
             LevelAttributes = new(1, 8, 1);
-        }  
-   
+        }
+
+        public override void LevelUp()
+        {
+            base.LevelUp();
+
+            LevelAttributes.IncreaseAttributes(1, 5, 1);
+        }
     }
 }

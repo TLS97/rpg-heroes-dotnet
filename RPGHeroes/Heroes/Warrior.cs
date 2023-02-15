@@ -12,5 +12,11 @@ namespace RPGHeroes.Heroes
         {
             LevelAttributes = new(5, 1, 2);
         }
+
+        public override void LevelUp()
+        {
+            base.LevelUp();
+            LevelAttributes.IncreaseAttributes(3, 1, 2);
+        }
     }
 }
