@@ -893,5 +893,30 @@ namespace RPGHeroes.Tests
 
         #endregion
 
+        #region Calculate Total Attributes
+        #region Mage
+        [Fact]
+        public void CalculateTotalAttributes_TotalAttributesOfMageWithNoEquipment_ShouldCorrectlyCalculateTotal()
+        {
+            // Arrange
+            string heroName = "Tine";
+            Mage mage = new(heroName);
+
+            HeroAttributes mageAttributes = new(1, 8, 1);
+            
+            HeroAttributes armorAttributes = new(0, 0, 0); // No armor equipped
+
+            HeroAttributes totalAttribues = mageAttributes + armorAttributes;
+
+            HeroAttributes expected = totalAttribues;
+
+            // Act
+            HeroAttributes actual = mage.CalculateTotalAttributes();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+        #endregion
     }
 }
