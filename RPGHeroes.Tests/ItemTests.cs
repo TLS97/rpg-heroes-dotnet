@@ -23,9 +23,10 @@ namespace RPGHeroes.Tests
             int requiredLevel = 1;
             int damage = 1;
             string expected = name;
+            WeaponTypes weaponType = WeaponTypes.Axe;
 
             // Act
-            Weapon axe = new(name, requiredLevel, damage);
+            Weapon axe = new(name, requiredLevel, damage, weaponType);
             string actual = axe.Name;
 
             // Assert
@@ -40,9 +41,10 @@ namespace RPGHeroes.Tests
             int requiredLevel = 1;
             int damage = 1;
             int expected = requiredLevel;
+            WeaponTypes weaponType = WeaponTypes.Axe;
 
             // Act
-            Weapon axe = new(name, requiredLevel, damage);
+            Weapon axe = new(name, requiredLevel, damage, weaponType);
             int actual = axe.RequiredLevel;
 
             // Assert
@@ -58,9 +60,10 @@ namespace RPGHeroes.Tests
             int damage = 1;
             Slots slot = SlotsEnum.Slots.Weapon;
             Slots expected = slot;
+            WeaponTypes weaponType = WeaponTypes.Axe;
 
             // Act
-            Weapon axe = new(name, requiredLevel, damage);
+            Weapon axe = new(name, requiredLevel, damage, weaponType);
             Slots actual = axe.Slot;
 
             // Assert
@@ -78,7 +81,7 @@ namespace RPGHeroes.Tests
             WeaponTypes expected = weaponType;
 
             // Act
-            Weapon axe = new(name, requiredLevel, damage);
+            Weapon axe = new(name, requiredLevel, damage, weaponType);
             WeaponTypes actual = axe.WeaponType;
 
             // Assert
@@ -93,9 +96,9 @@ namespace RPGHeroes.Tests
             int requiredLevel = 1;
             int damage = 1;
             int expected = damage;
-            
+            WeaponTypes weaponType = WeaponTypes.Axe;
             // Act
-            Weapon axe = new(name, requiredLevel, damage);
+            Weapon axe = new(name, requiredLevel, damage, weaponType);
             int actual = axe.Damage;
 
             // Assert

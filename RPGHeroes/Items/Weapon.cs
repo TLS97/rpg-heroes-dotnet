@@ -12,11 +12,12 @@ namespace RPGHeroes.Items
     {
         public WeaponTypes WeaponType { get; set; }
         public int Damage { get; set; }
-        public Weapon(string name, int requiredLevel, int damage) : base(name)
+        public Weapon(string name, int requiredLevel, int damage, WeaponTypes weaponType) : base(name)
         {
             RequiredLevel = requiredLevel;
             Slot = SlotsEnum.Slots.Weapon;
             Damage = damage;
+            WeaponType = weaponType;
         }
     }
 }
