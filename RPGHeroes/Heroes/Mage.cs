@@ -49,5 +49,20 @@ namespace RPGHeroes.Heroes
 
             LevelAttributes.IncreaseAttributes(1, 5, 1);
         }
+
+        public override int CalculateDamage()
+        {
+            HeroAttributes totalAttributes = CalculateTotalAttributes();
+            int damagingAttribute = totalAttributes.Intelligence;
+            int weaponDamage = 1;
+
+            if (Equipment[Slots.Weapon] != null)
+            {
+                Weapon weapon = (Weapon)Equipment[Slots.Weapon];
+                weaponDamage = weapon.Damage;
+            }
+
+            return weaponDamage * (1 + damagingAttribute / 100);
+        }
     }
 }

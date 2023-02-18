@@ -20,6 +20,11 @@ namespace RPGHeroes.Heroes
             ValidArmorTypes = new() { ArmorTypes.Mail, ArmorTypes.Plate };
         }
 
+        public override int CalculateDamage()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Equip(Weapon weapon)
         {
             if (ValidWeaponTypes.Contains(weapon.WeaponType))

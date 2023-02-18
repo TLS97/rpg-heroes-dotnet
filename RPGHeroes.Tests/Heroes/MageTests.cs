@@ -353,5 +353,125 @@ namespace RPGHeroes.Tests.Heroes
             Assert.Equivalent(expected, actual, true);
         }
         #endregion
+
+        #region Calculating Mage's Hero Damage
+        [Fact]
+        public void CalculateDamage_CalculateMageDamageWithNoWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Mage mage = new(heroName);
+
+            int weaponDamage = 1; // No weapon equipped
+            int damagingAttribute = 8;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+            
+            int expected = heroDamage;
+            
+            // Act
+            int actual = mage.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void CalculateDamage_CalculateMageDamageWithWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Mage mage = new(heroName);
+
+            string weaponName = "Staff";
+            int requiredLevel = 1;
+            int damage = 4;
+            WeaponTypes weaponType = WeaponTypes.Staff;
+            Weapon staff = new(weaponName, requiredLevel, damage, weaponType);
+
+            mage.Equip(staff);
+
+            int weaponDamage = 4; // Weapon equipped
+            int damagingAttribute = 8;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            int expected = heroDamage;
+
+            // Act
+            int actual = mage.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void CalculateDamage_CalculateMageDamageWithReplacedWeapon_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Mage mage = new(heroName);
+
+            string weaponName = "Staff";
+            int requiredLevel = 1;
+            int damage = 4;
+            WeaponTypes weaponType = WeaponTypes.Staff;
+            Weapon staff = new(weaponName, requiredLevel, damage, weaponType);
+
+            mage.Equip(staff);
+
+            string weaponName2 = "Wand";
+            int requiredLevel2 = 1;
+            int damage2 = 3;
+            WeaponTypes weaponType2 = WeaponTypes.Wand;
+            Weapon wand = new(weaponName2, requiredLevel2, damage2, weaponType2);
+
+            mage.Equip(wand);
+
+            int weaponDamage = 3; // Weapon equipped
+            int damagingAttribute = 8;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            int expected = heroDamage;
+
+            // Act
+            int actual = mage.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void CalculateDamage_CalculateMageDamageWithWeaponAndArmorEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Mage mage = new(heroName);
+
+            string weaponName = "Staff";
+            int requiredLevel = 1;
+            int damage = 4;
+            WeaponTypes weaponType = WeaponTypes.Staff;
+            Weapon staff = new(weaponName, requiredLevel, damage, weaponType);
+
+            mage.Equip(staff);
+
+            string armorName = "Cloth";
+            int requiredLevelCloth = 1;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Cloth;
+            Armor cloth = new(armorName, requiredLevelCloth, slot, armorType);
+            HeroAttributes clothAttributes = new(1, 1, 1);
+            cloth.ArmorAttributes = clothAttributes;
+
+            mage.Equip(cloth, slot);
+
+            int weaponDamage = 4; // Weapon equipped
+            int initialIntelligence = 8;
+            int increasedDamageWithCloth = 1;
+            int damagingAttribute = initialIntelligence + increasedDamageWithCloth;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            int expected = heroDamage;
+
+            // Act
+            int actual = mage.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+
     }
 }

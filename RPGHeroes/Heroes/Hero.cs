@@ -41,16 +41,17 @@ namespace RPGHeroes.Heroes
         {
             HeroAttributes totalAttributes = LevelAttributes;
 
-            foreach (Armor armor in Equipment.Values)
+            foreach (var equipment in Equipment)
             {
-
-                if (armor != null)
+                if (equipment.Value != null && equipment.Key != Slots.Weapon)
                 {
-                    Console.WriteLine(armor.Name);
+                    Armor armor = (Armor)equipment.Value;
                     totalAttributes += armor.ArmorAttributes;
                 }
             }
             return totalAttributes;
         }
+
+        public abstract int CalculateDamage();
     }
 }
