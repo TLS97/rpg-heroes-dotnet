@@ -36,5 +36,21 @@ namespace RPGHeroes.Heroes
         {
             Level += 1;
         }
+
+        public HeroAttributes CalculateTotalAttributes()
+        {
+            HeroAttributes totalAttributes = LevelAttributes;
+
+            foreach (Armor armor in Equipment.Values)
+            {
+
+                if (armor != null)
+                {
+                    Console.WriteLine(armor.Name);
+                    totalAttributes += armor.ArmorAttributes;
+                }
+            }
+            return totalAttributes;
+        }
     }
 }

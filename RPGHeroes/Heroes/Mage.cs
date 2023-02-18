@@ -49,20 +49,5 @@ namespace RPGHeroes.Heroes
 
             LevelAttributes.IncreaseAttributes(1, 5, 1);
         }
-
-        public HeroAttributes CalculateTotalAttributes()
-        {
-            HeroAttributes totalAttributes = LevelAttributes;
-
-            foreach (Armor armor in Equipment.Values)
-            {
-                // do something with entry.Value or entry.Key
-                if (armor.Slot != Slots.Weapon && armor != null)
-                {
-                    totalAttributes += armor.ArmorAttributes;
-                }
-            }
-            return totalAttributes;
-        }
     }
 }

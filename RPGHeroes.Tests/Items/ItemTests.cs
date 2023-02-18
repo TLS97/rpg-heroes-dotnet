@@ -10,7 +10,7 @@ using static RPGHeroes.Enums.ArmorsEnum;
 using static RPGHeroes.Enums.SlotsEnum;
 using static RPGHeroes.Enums.WeaponsEnum;
 
-namespace RPGHeroes.Tests
+namespace RPGHeroes.Tests.Items
 {
     public class ItemTests
     {
@@ -58,7 +58,7 @@ namespace RPGHeroes.Tests
             string name = "Axe";
             int requiredLevel = 1;
             int damage = 1;
-            Slots slot = SlotsEnum.Slots.Weapon;
+            Slots slot = Slots.Weapon;
             Slots expected = slot;
             WeaponTypes weaponType = WeaponTypes.Axe;
 
@@ -77,7 +77,7 @@ namespace RPGHeroes.Tests
             string name = "Axe";
             int requiredLevel = 1;
             int damage = 1;
-            WeaponTypes weaponType = WeaponsEnum.WeaponTypes.Axe;
+            WeaponTypes weaponType = WeaponTypes.Axe;
             WeaponTypes expected = weaponType;
 
             // Act
@@ -113,8 +113,8 @@ namespace RPGHeroes.Tests
             // Arrange
             string name = "Cloth";
             int requiredLevel = 1;
-            Slots slot = SlotsEnum.Slots.Body;
-            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Cloth;
             string expected = name;
 
             // Act
@@ -131,8 +131,8 @@ namespace RPGHeroes.Tests
             // Arrange
             string name = "Cloth";
             int requiredLevel = 1;
-            Slots slot = SlotsEnum.Slots.Body;
-            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Cloth;
             int expected = requiredLevel;
 
             // Act
@@ -149,8 +149,8 @@ namespace RPGHeroes.Tests
             // Arrange
             string name = "Cloth";
             int requiredLevel = 1;
-            Slots slot = SlotsEnum.Slots.Body;
-            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Cloth;
             Slots expected = slot;
 
             // Act
@@ -167,8 +167,8 @@ namespace RPGHeroes.Tests
             // Arrange            
             string name = "Cloth";
             int requiredLevel = 1;
-            Slots slot = SlotsEnum.Slots.Body;
-            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Cloth;
             ArmorTypes expected = armorType;
 
             // Act
@@ -185,8 +185,8 @@ namespace RPGHeroes.Tests
             // Arrange
             string name = "Cloth";
             int requiredLevel = 1;
-            Slots slot = SlotsEnum.Slots.Body;
-            ArmorTypes armorType = ArmorsEnum.ArmorTypes.Cloth;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Cloth;
             HeroAttributes armorAttributes = new(0, 0, 0);
             HeroAttributes expected = armorAttributes;
 
