@@ -22,6 +22,12 @@ namespace RPGHeroes.Heroes
             ValidArmorTypes = new() { ArmorTypes.Cloth };
         }
 
+        /// <summary>
+        /// Equips a Mage with a weapon if the weapon is valid and the mage has reached the required level of the weapon.
+        /// </summary>
+        /// <param name="weapon"></param>
+        /// <exception cref="InsufficientLevelException">When the Required Level of the Weapon is greater than the Level of the Mage</exception>
+        /// <exception cref="InvalidWeaponException">When the type of the Weapon being equipped is not valid for the Mage</exception>
         public void Equip(Weapon weapon)
         {
             if (ValidWeaponTypes.Contains(weapon.WeaponType))
@@ -33,6 +39,13 @@ namespace RPGHeroes.Heroes
                 throw new InvalidWeaponException($"{weapon.WeaponType} cannot be equipped by a Mage!");
         }
 
+        /// <summary>
+        /// Equips a Mage with a piece of armor if the armor type is valid and the Mage has reached the required level of the armor.
+        /// </summary>
+        /// <param name="armor"></param>
+        /// <param name="slot"></param>
+        /// <exception cref="InsufficientLevelException">When the Required Level of the Armor is greater than the Level of the Mage</exception>
+        /// <exception cref="InvalidArmorException">When the type of the Armor being equipped is not valid for the Mage</exception>
         public void Equip(Armor armor, Slots slot)
         {
             if (ValidArmorTypes.Contains(armor.ArmorType))
@@ -43,7 +56,10 @@ namespace RPGHeroes.Heroes
             else
                 throw new InvalidArmorException($"{armor.ArmorType} cannot be equipped by a Mage!");
         }
-
+        
+        /// <summary>
+        /// Calls the base class' LevelUp() method to increase the Level of the hero and increases the LevelAttributes.
+        /// </summary>
         public override void LevelUp()
         {
             base.LevelUp();
@@ -51,6 +67,11 @@ namespace RPGHeroes.Heroes
             LevelAttributes.IncreaseAttributes(1, 5, 1);
         }
 
+        /// <summary>
+        /// Calls the base class' CalculateDamage() method to get the WeaponDamage of the equipped weapon. 
+        /// Gets the Total Intelligence from the TotalAttributes of the hero and calculates the Hero Damage.
+        /// </summary>
+        /// <returns>Hero damage</returns>
         public override double CalculateDamage()
         {
             double weaponDamage = base.CalculateDamage();

@@ -32,6 +32,10 @@ namespace RPGHeroes.Heroes
             };
         }
 
+        /// <summary>
+        /// Calculates the WeaponDamage of the hero.
+        /// </summary>
+        /// <returns>The WeaponDamage of the hero.</returns>
         public virtual double CalculateDamage()
         {
             double weaponDamage = 1;
@@ -45,11 +49,18 @@ namespace RPGHeroes.Heroes
             return weaponDamage;
         }
 
+        /// <summary>
+        /// Increases the Level of the hero.
+        /// </summary>
         public virtual void LevelUp()
         {
             Level += 1;
         }
 
+        /// <summary>
+        /// Calculates the TotalAttributes of the hero with any equipped armors.
+        /// </summary>
+        /// <returns>TotalAttributes</returns>
         public HeroAttributes CalculateTotalAttributes()
         {
             HeroAttributes totalAttributes = LevelAttributes;
@@ -65,6 +76,10 @@ namespace RPGHeroes.Heroes
             return totalAttributes;
         }
 
+        /// <summary>
+        /// Displays the hero's state, including name, class, level, total strenght, intelligence and dexterity, and damage.
+        /// </summary>
+        /// <returns>A string with the current state of the hero.</returns>
         public string Display()
         {
             StringBuilder state = new StringBuilder();
