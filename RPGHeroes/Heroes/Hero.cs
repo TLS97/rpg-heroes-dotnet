@@ -32,7 +32,18 @@ namespace RPGHeroes.Heroes
             };
         }
 
-        public abstract double CalculateDamage();
+        public virtual double CalculateDamage()
+        {
+            double weaponDamage = 1;
+
+            if(Equipment[Slots.Weapon] != null)
+            {
+                Weapon weapon = (Weapon)Equipment[Slots.Weapon];
+                weaponDamage = weapon.Damage;
+            }
+
+            return weaponDamage;
+        }
 
         public virtual void LevelUp()
         {
