@@ -4,6 +4,7 @@ using RPGHeroes.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static RPGHeroes.Enums.ArmorsEnum;
@@ -64,5 +65,19 @@ namespace RPGHeroes.Heroes
 
             return weaponDamage * (1 + damagingAttribute / 100);
         }
+
+        //public string Display()
+        //{
+        //    StringBuilder state = new StringBuilder();
+        //    state.AppendLine(Name);
+        //    state.AppendLine(this.GetType().ToString());
+        //    state.AppendLine(Level.ToString());
+        //    state.AppendLine(CalculateTotalAttributes().Strength.ToString());
+        //    state.AppendLine(CalculateTotalAttributes().Intelligence.ToString());
+        //    state.AppendLine(CalculateTotalAttributes().Dexterity.ToString());
+        //    state.AppendLine(CalculateDamage().ToString());
+
+        //    return state.ToString();
+        //}
     }
 }

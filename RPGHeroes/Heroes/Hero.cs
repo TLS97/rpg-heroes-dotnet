@@ -32,6 +32,8 @@ namespace RPGHeroes.Heroes
             };
         }
 
+        public abstract int CalculateDamage();
+
         public virtual void LevelUp()
         {
             Level += 1;
@@ -52,6 +54,20 @@ namespace RPGHeroes.Heroes
             return totalAttributes;
         }
 
-        public abstract int CalculateDamage();
+        public string Display()
+        {
+            StringBuilder state = new StringBuilder();
+            state.AppendLine($"{this.Name}'s Current State:");
+            state.AppendLine("Class: " + this.GetType().ToString());
+            state.AppendLine("Level: " + Level.ToString());
+            state.AppendLine("Total Strength: " + CalculateTotalAttributes().Strength.ToString());
+            state.AppendLine("Total Intelligence: " + CalculateTotalAttributes().Intelligence.ToString());
+            state.AppendLine("Total Dexterity: " + CalculateTotalAttributes().Dexterity.ToString());
+            state.AppendLine("Damage: " + CalculateDamage().ToString());
+
+            Console.WriteLine(state.ToString());
+
+            return state.ToString();
+        }
     }
 }
