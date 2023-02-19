@@ -20,9 +20,19 @@ namespace RPGHeroes.Heroes
             ValidArmorTypes = new() { ArmorTypes.Leather, ArmorTypes.Mail };
         }
 
-        public override int CalculateDamage()
+        public override double CalculateDamage()
         {
-            throw new NotImplementedException();
+            HeroAttributes totalAttributes = CalculateTotalAttributes();
+            int damagingAttribute = totalAttributes.Intelligence;
+            int weaponDamage = 1;
+
+            if (Equipment[Slots.Weapon] != null)
+            {
+                Weapon weapon = (Weapon)Equipment[Slots.Weapon];
+                weaponDamage = weapon.Damage;
+            }
+
+            return weaponDamage * (1 + damagingAttribute / 100);
         }
 
         public void Equip(Weapon weapon)

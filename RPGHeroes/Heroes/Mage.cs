@@ -51,7 +51,7 @@ namespace RPGHeroes.Heroes
             LevelAttributes.IncreaseAttributes(1, 5, 1);
         }
 
-        public override int CalculateDamage()
+        public override double CalculateDamage()
         {
             HeroAttributes totalAttributes = CalculateTotalAttributes();
             int damagingAttribute = totalAttributes.Intelligence;
@@ -66,18 +66,5 @@ namespace RPGHeroes.Heroes
             return weaponDamage * (1 + damagingAttribute / 100);
         }
 
-        //public string Display()
-        //{
-        //    StringBuilder state = new StringBuilder();
-        //    state.AppendLine(Name);
-        //    state.AppendLine(this.GetType().ToString());
-        //    state.AppendLine(Level.ToString());
-        //    state.AppendLine(CalculateTotalAttributes().Strength.ToString());
-        //    state.AppendLine(CalculateTotalAttributes().Intelligence.ToString());
-        //    state.AppendLine(CalculateTotalAttributes().Dexterity.ToString());
-        //    state.AppendLine(CalculateDamage().ToString());
-
-        //    return state.ToString();
-        //}
     }
 }

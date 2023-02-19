@@ -20,7 +20,7 @@ namespace RPGHeroes.Heroes
             ValidArmorTypes = new() { ArmorTypes.Mail, ArmorTypes.Plate };
         }
 
-        public override int CalculateDamage()
+        public override double CalculateDamage()
         {
             throw new NotImplementedException();
         }

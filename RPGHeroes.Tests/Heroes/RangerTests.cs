@@ -356,5 +356,127 @@ namespace RPGHeroes.Tests.Heroes
             Assert.Equivalent(expected, actual, true);
         }
         #endregion
+
+        #region Calculating Ranger's Hero Damage
+        [Fact]
+        public void CalculateDamage_CalculateRangerDamageWithNoWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Ranger ranger = new(heroName);
+
+            int weaponDamage = 1; // No weapon equipped
+            int damagingAttribute = 7;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = ranger.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateRangerDamageWithWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Ranger ranger = new(heroName);
+
+            string weaponName = "Bow";
+            int requiredLevel = 1;
+            int damage = 2;
+            WeaponTypes weaponType = WeaponTypes.Bow;
+            Weapon bow = new(weaponName, requiredLevel, damage, weaponType);
+
+            ranger.Equip(bow);
+
+            int weaponDamage = 2; // Weapon equipped
+            int damagingAttribute = 7;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = ranger.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateRangerDamageWithReplacedWeapon_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Ranger ranger = new(heroName);
+
+            string weaponName = "Bow";
+            int requiredLevel = 1;
+            int damage = 2;
+            WeaponTypes weaponType = WeaponTypes.Bow;
+            Weapon bow1 = new(weaponName, requiredLevel, damage, weaponType);
+
+            ranger.Equip(bow1);
+
+            string weaponName2 = "Exclusive Bow";
+            int requiredLevel2 = 1;
+            int damage2 = 5;
+            WeaponTypes weaponType2 = WeaponTypes.Bow;
+            Weapon bow2 = new(weaponName2, requiredLevel2, damage2, weaponType2);
+
+            ranger.Equip(bow2);
+
+            int weaponDamage = 5; // Weapon equipped
+            int damagingAttribute = 7;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = ranger.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateRangerDamageWithWeaponAndArmorEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Ranger ranger = new(heroName);
+
+            string weaponName = "Bow";
+            int requiredLevel = 1;
+            int damage = 2;
+            WeaponTypes weaponType = WeaponTypes.Bow;
+            Weapon bow = new(weaponName, requiredLevel, damage, weaponType);
+
+            ranger.Equip(bow);
+
+            string armorName = "Leather";
+            int requiredLevelLeather = 1;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Leather;
+            Armor leather = new(armorName, requiredLevelLeather, slot, armorType);
+            HeroAttributes leatherAttributes = new(1, 1, 1);
+            leather.ArmorAttributes = leatherAttributes;
+
+            ranger.Equip(leather, slot);
+
+            int weaponDamage = 2; // Weapon equipped
+            int initialDexterity = 7;
+            int increasedDamageWithLeather = 1;
+            int damagingAttribute = initialDexterity + increasedDamageWithLeather;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = ranger.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
     }
 }

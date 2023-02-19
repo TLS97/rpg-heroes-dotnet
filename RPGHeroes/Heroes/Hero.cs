@@ -32,7 +32,7 @@ namespace RPGHeroes.Heroes
             };
         }
 
-        public abstract int CalculateDamage();
+        public abstract double CalculateDamage();
 
         public virtual void LevelUp()
         {

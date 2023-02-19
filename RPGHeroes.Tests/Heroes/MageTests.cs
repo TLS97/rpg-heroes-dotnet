@@ -366,14 +366,15 @@ namespace RPGHeroes.Tests.Heroes
             int damagingAttribute = 8;
             int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
             
-            int expected = heroDamage;
+            double expected = heroDamage;
             
             // Act
-            int actual = mage.CalculateDamage();
+            double actual = mage.CalculateDamage();
 
             // Assert
             Assert.Equal(expected, actual);
         }
+        
         [Fact]
         public void CalculateDamage_CalculateMageDamageWithWeaponEquipped_ShouldCorrectlyCalculateDamage()
         {
@@ -392,14 +393,15 @@ namespace RPGHeroes.Tests.Heroes
             int damagingAttribute = 8;
             int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
 
-            int expected = heroDamage;
+            double expected = heroDamage;
 
             // Act
-            int actual = mage.CalculateDamage();
+            double actual = mage.CalculateDamage();
 
             // Assert
             Assert.Equal(expected, actual);
         }
+        
         [Fact]
         public void CalculateDamage_CalculateMageDamageWithReplacedWeapon_ShouldCorrectlyCalculateDamage()
         {
@@ -426,14 +428,15 @@ namespace RPGHeroes.Tests.Heroes
             int damagingAttribute = 8;
             int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
 
-            int expected = heroDamage;
+            double expected = heroDamage;
 
             // Act
-            int actual = mage.CalculateDamage();
+            double actual = mage.CalculateDamage();
 
             // Assert
             Assert.Equal(expected, actual);
         }
+        
         [Fact]
         public void CalculateDamage_CalculateMageDamageWithWeaponAndArmorEquipped_ShouldCorrectlyCalculateDamage()
         {
@@ -464,10 +467,10 @@ namespace RPGHeroes.Tests.Heroes
             int damagingAttribute = initialIntelligence + increasedDamageWithCloth;
             int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
 
-            int expected = heroDamage;
+            double expected = heroDamage;
 
             // Act
-            int actual = mage.CalculateDamage();
+            double actual = mage.CalculateDamage();
 
             // Assert
             Assert.Equal(expected, actual);
