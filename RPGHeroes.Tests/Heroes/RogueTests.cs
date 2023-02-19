@@ -479,5 +479,41 @@ namespace RPGHeroes.Tests.Heroes
             Assert.Equal(expected, actual);
         }
         #endregion
+
+        #region Displaying Rogue's State
+        [Fact]
+        public void Display_DisplayingRogueState_ShouldDisplayCorrectProperties()
+        {
+            // Arrange
+            string heroName = "Tine";
+            Rogue rogue = new(heroName);
+
+
+            string name = heroName;
+            string heroClass = "RPGHeroes.Heroes.Rogue";
+            string level = "1";
+            string totalStrength = "2";
+            string totalIntelligence = "1";
+            string totalDexterity = "6";
+            string damage = "1";
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{name}'s Current State:");
+            stringBuilder.AppendLine("Class: " + heroClass);
+            stringBuilder.AppendLine("Level: " + level);
+            stringBuilder.AppendLine("Total Strength: " + totalStrength);
+            stringBuilder.AppendLine("Total Intelligence: " + totalIntelligence);
+            stringBuilder.AppendLine("Total Dexterity: " + totalDexterity);
+            stringBuilder.AppendLine("Damage: " + damage);
+
+            string expected = stringBuilder.ToString();
+
+            // Act
+            string actual = rogue.Display();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
     }
 }
