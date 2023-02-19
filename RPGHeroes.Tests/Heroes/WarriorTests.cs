@@ -359,5 +359,127 @@ namespace RPGHeroes.Tests.Heroes
             Assert.Equivalent(expected, actual, true);
         }
         #endregion
+
+        #region Calculating Warrior's Hero Damage
+        [Fact]
+        public void CalculateDamage_CalculateWarriorDamageWithNoWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Warrior warrior = new(heroName);
+
+            int weaponDamage = 1; // No weapon equipped
+            int damagingAttribute = 5;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = warrior.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateWarriorDamageWithWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Warrior warrior = new(heroName);
+
+            string weaponName = "Axe";
+            int requiredLevel = 1;
+            int damage = 3;
+            WeaponTypes weaponType = WeaponTypes.Axe;
+            Weapon axe = new(weaponName, requiredLevel, damage, weaponType);
+
+            warrior.Equip(axe);
+
+            int weaponDamage = 3; // Weapon equipped
+            int damagingAttribute = 5;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = warrior.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateWarriorDamageWithReplacedWeapon_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Warrior warrior = new(heroName);
+
+            string weaponName = "Axe";
+            int requiredLevel = 1;
+            int damage = 3;
+            WeaponTypes weaponType = WeaponTypes.Axe;
+            Weapon axe = new(weaponName, requiredLevel, damage, weaponType);
+
+            warrior.Equip(axe);
+
+            string weaponName2 = "Sword";
+            int requiredLevel2 = 1;
+            int damage2 = 6;
+            WeaponTypes weaponType2 = WeaponTypes.Sword;
+            Weapon sword = new(weaponName2, requiredLevel2, damage2, weaponType2);
+
+            warrior.Equip(sword);
+
+            int weaponDamage = 6; // Weapon equipped
+            int damagingAttribute = 5;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = warrior.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateWarriorDamageWithWeaponAndArmorEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Warrior warrior = new(heroName);
+
+            string weaponName = "Sword";
+            int requiredLevel = 1;
+            int damage = 6;
+            WeaponTypes weaponType = WeaponTypes.Sword;
+            Weapon sword = new(weaponName, requiredLevel, damage, weaponType);
+
+            warrior.Equip(sword);
+
+            string armorName = "Mail";
+            int requiredLevelMail = 1;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Mail;
+            Armor mail = new(armorName, requiredLevelMail, slot, armorType);
+            HeroAttributes mailAttributes = new(4, 0, 0);
+            mail.ArmorAttributes = mailAttributes;
+
+            warrior.Equip(mail, slot);
+
+            int weaponDamage = 6; // Weapon equipped
+            int initialIntelligence = 5;
+            int increasedDamageWithMail = 4;
+            int damagingAttribute = initialIntelligence + increasedDamageWithMail;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = warrior.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
     }
 }
