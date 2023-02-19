@@ -478,5 +478,41 @@ namespace RPGHeroes.Tests.Heroes
             Assert.Equal(expected, actual);
         }
         #endregion
+
+        #region Displaying Ranger's State
+        [Fact]
+        public void Display_DisplayingRangerState_ShouldDisplayCorrectProperties()
+        {
+            // Arrange
+            string heroName = "Tine";
+            Ranger ranger = new(heroName);
+
+
+            string name = heroName;
+            string heroClass = "RPGHeroes.Heroes.Ranger";
+            string level = "1";
+            string totalStrength = "1";
+            string totalIntelligence = "1";
+            string totalDexterity = "7";
+            string damage = "1";
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{name}'s Current State:");
+            stringBuilder.AppendLine("Class: " + heroClass);
+            stringBuilder.AppendLine("Level: " + level);
+            stringBuilder.AppendLine("Total Strength: " + totalStrength);
+            stringBuilder.AppendLine("Total Intelligence: " + totalIntelligence);
+            stringBuilder.AppendLine("Total Dexterity: " + totalDexterity);
+            stringBuilder.AppendLine("Damage: " + damage);
+
+            string expected = stringBuilder.ToString();
+
+            // Act
+            string actual = ranger.Display();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
     }
 }
