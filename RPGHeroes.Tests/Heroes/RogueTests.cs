@@ -357,5 +357,127 @@ namespace RPGHeroes.Tests.Heroes
             Assert.Equivalent(expected, actual, true);
         }
         #endregion
+
+        #region Calculating Rogue's Hero Damage
+        [Fact]
+        public void CalculateDamage_CalculateRogueDamageWithNoWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Rogue rogue = new(heroName);
+
+            int weaponDamage = 1; // No weapon equipped
+            int damagingAttribute = 6;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = rogue.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateRogueDamageWithWeaponEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Rogue rogue = new(heroName);
+
+            string weaponName = "Sword";
+            int requiredLevel = 1;
+            int damage = 6;
+            WeaponTypes weaponType = WeaponTypes.Sword;
+            Weapon sword = new(weaponName, requiredLevel, damage, weaponType);
+
+            rogue.Equip(sword);
+
+            int weaponDamage = 6; // Weapon equipped
+            int damagingAttribute = 6;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = rogue.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateMageDamageWithReplacedWeapon_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Rogue rogue = new(heroName);
+
+            string weaponName = "Sword";
+            int requiredLevel = 1;
+            int damage = 6;
+            WeaponTypes weaponType = WeaponTypes.Sword;
+            Weapon sword = new(weaponName, requiredLevel, damage, weaponType);
+
+            rogue.Equip(sword);
+
+            string weaponName2 = "Dagger";
+            int requiredLevel2 = 1;
+            int damage2 = 3;
+            WeaponTypes weaponType2 = WeaponTypes.Dagger;
+            Weapon dagger = new(weaponName2, requiredLevel2, damage2, weaponType2);
+
+            rogue.Equip(dagger);
+
+            int weaponDamage = 3; // Weapon equipped
+            int damagingAttribute = 7;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = rogue.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateDamage_CalculateMageDamageWithWeaponAndArmorEquipped_ShouldCorrectlyCalculateDamage()
+        {
+            string heroName = "Tine";
+            Rogue rogue = new(heroName);
+
+            string weaponName = "Sword";
+            int requiredLevel = 1;
+            int damage = 6;
+            WeaponTypes weaponType = WeaponTypes.Sword;
+            Weapon sword = new(weaponName, requiredLevel, damage, weaponType);
+
+            rogue.Equip(sword);
+
+            string armorName = "Mail";
+            int requiredLevelCloth = 1;
+            Slots slot = Slots.Body;
+            ArmorTypes armorType = ArmorTypes.Mail;
+            Armor mail = new(armorName, requiredLevelCloth, slot, armorType);
+            HeroAttributes mailAttributes = new(0, 0, 3);
+            mail.ArmorAttributes = mailAttributes;
+
+            rogue.Equip(mail, slot);
+
+            int weaponDamage = 6; // Weapon equipped
+            int initialIntelligence = 7;
+            int increasedDamageWithMail = 3;
+            int damagingAttribute = initialIntelligence + increasedDamageWithMail;
+            int heroDamage = weaponDamage * (1 + damagingAttribute / 100);
+
+            double expected = heroDamage;
+
+            // Act
+            double actual = rogue.CalculateDamage();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+        #endregion
     }
 }

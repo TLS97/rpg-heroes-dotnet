@@ -23,7 +23,7 @@ namespace RPGHeroes.Heroes
         public override double CalculateDamage()
         {
             HeroAttributes totalAttributes = CalculateTotalAttributes();
-            int damagingAttribute = totalAttributes.Intelligence;
+            int damagingAttribute = totalAttributes.Dexterity;
             int weaponDamage = 1;
 
             if (Equipment[Slots.Weapon] != null)
